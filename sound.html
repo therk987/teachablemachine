@@ -76,7 +76,7 @@
                 <input type="text" value="https://teachablemachine.withgoogle.com/models/PqliuW_l-/" id="teachable-link" style="width:300px"></input>
                 <a href="#" id="model_loader" type="button" onclick="init()" class="btn-sm">모델 로드하기</a>
                 <br/>
-                <img src="./images/sleep.jpg" style="width:300px;height:auto;"></img>
+                <img src="images/sleep.jpg" style="width:300px;height:auto;"></img>
 
                   <div id="label-container"></div>
 
@@ -93,7 +93,7 @@
 
                 <div style="text-align:center">
 
-                  <img id="visual_image" src="./images/on.png" style="width:300px;height:auto;"></img>
+                  <img id="visual_image" src="images/on.png" style="width:300px;height:auto;"></img>
 
                 </div>
 
@@ -259,14 +259,14 @@
 
               if(index==0){
                 // ON!
-                document.getElementById("visual_image").src = "./images/on.png";
+                document.getElementById("visual_image").src = "images/on.png";
                 document.getElementById("img-intro").innerText = Math.floor(score_result[index] * 100) +"%로 불을 키라고 인식했네요!\n 다시 불을 꺼볼까요?";
 
 
 
               }else if(index==1){
                 // OFF!
-                document.getElementById("visual_image").src = "./images/off.png";
+                document.getElementById("visual_image").src = "images/off.png";
                 document.getElementById("img-intro").innerText = Math.floor(score_result[index] * 100) +"%로 불을 끄라고 인식하였어요!\n 이제 편하게 잠을 잘 수 있겠어요!";
 
               }else{
