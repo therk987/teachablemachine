@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Louie - Free Bootstrap 4 Template by Colorlib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <!-- don't mind these: -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- these load the stylesheets: -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow:500">
+    <link rel="stylesheet" href="./IMAGE_Machine/css/reset.css">
+    <link rel="stylesheet" href="./IMAGE_Machine/css/style.css">
+    <link rel="stylesheet" href="./IMAGE_Machine/css/style2.css">
+
+
+
+
+
+  </head>
+  <body>
+
+	<div id="colorlib-page">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
+			<h1 id="colorlib-logo"><a href="index.html"><span class="img" style="background-image: url(images/image_icon.png);"></span>Image</a></h1>
+			<nav id="colorlib-main-menu" role="navigation">
+				<ul>
+					<li><a href="index.html">Teacherable Machine</a></li>
+          <li class="colorlib-active"><a href="image.html">이미지</a></li>
+					<li><a href="sound.html">음성</a></li>
+          <!-- <li><a href="image2.html">Cam</a></li> -->
+
+
+
+				</ul>
+			</nav>
+
+		</aside> <!-- END COLORLIB-ASIDE -->
+		<div id="colorlib-main">
+			<section class="ftco-section-no-padding bg-light">
+				<div class="hero-wrap">
+					<div class="overlay"></div>
+					<div class="d-flex">
+						<div class="author-image text img p-md-5">
+
+              <section id="model">
+                  <h1>Teachable Machine</h1>
+                  <h2>업로드한 링크주소를 입력해주세요.</h2>
+                  <input type="text" value="https://teachablemachine.withgoogle.com/models/PH7H8eylZ/" id="teachable-link" style="width:300px"></input>
+                  <a href="#" id="model_loader" type="button" onclick="init()" class="btn-sm">모델 로드하기</a>
+                  <br/>
+
+                	<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+                	<div class="file-upload">
+                		<button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+
+                		<div class="image-upload-wrap">
+                			<input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                			<div class="drag-text">
+                				<h3>Drag and drop a file or select add Image</h3>
+                			</div>
+                		</div>
+
+
+                		<div class="file-upload-content">
+                			<img class="file-upload-image" id="face-image" src="#" alt="your image" />
+                			<div class="image-title-wrap">
+                				<button type="button" onclick="removeUpload()" class="remove-image">Remove
+                					<span class="image-title">Uploaded Image</span>
+                				</button>
+                			</div>
+                		</div>
+
+
+                	</div>
+
+                  <button type="button" onclick="predict()" class="btn-lg">예측하기</button>
+
+                	<div id="label-container"></div>
+                	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+                	<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+                	<script type="text/javascript">
+                		// More API functions here:
+                		// https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+                		// the link to your model provided by Teachable Machine export panel
+                		var URL = "https://teachablemachine.withgoogle.com/models/PH7H8eylZ/";
+                		let model, labelContainer, maxPredictions;
+                		// Load the image model and setup the webcam
+                		async function init() {
+                      document.getElementById("model_loader").text = "모델 로드 중 입니다. 잠시만 기다려주세요!";
+
+                      const URL = document.getElementById("teachable-link").value;
+
+
+                			const modelURL = URL + "model.json";
+                			const metadataURL = URL + "metadata.json";
+                			// load the model and metadata
+                			// Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+                			// or files from your local hard drive
+                			// Note: the pose library adds "tmImage" object to your window (window.tmImage)
+                      model = await tmImage.load(modelURL, metadataURL);
+                			maxPredictions = model.getTotalClasses();
+                			labelContainer = document.getElementById("label-container");
+                			for (let i = 0; i < maxPredictions; i++) { // and class labels
+                				labelContainer.appendChild(document.createElement("div"));
+                			}
+
+                      document.getElementById("model_loader").text = "모델 로드 완료";
+
+                      alert(URL+"\n 모델이 로드되었습니다.")
+
+
+
+                		}
+                		// run the webcam image through the image model
+                		async function predict() {
+
+
+                      // predict can take in an image, video or canvas html element
+                			var image = document.getElementById("face-image");
+                			const prediction = await model.predict(image, false);
+                      var score_result = Array.from({length:prediction.length}, ()=>0);
+
+
+                			for (let i = 0; i < maxPredictions; i++) {
+                				const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+                				labelContainer.childNodes[i].innerHTML = classPrediction;
+                        score_result[i] = prediction[i].probability;
+                      }
+
+
+
+                                    var max = score_result.reduce( function (previous, current) {
+                      	               return previous > current ? previous:current;
+                                    });
+
+                                    var index = score_result.indexOf(max);
+
+                                    if(index==0){
+                                      // ON!
+                                      document.getElementById("visual_image").src = "/images/drop.gif";
+                                      document.getElementById("img-intro").innerText = Math.floor(score_result[index] * 100) +"% 허스키군요! 가정에 분양 보내야겠어요!";
+
+
+
+                                    }else if(index==1){
+                                      // OFF!
+                                      document.getElementById("visual_image").src = "/images/wolf_drop.gif";
+                                      document.getElementById("img-intro").innerText = Math.floor(score_result[index] * 100) +"% 늑대였군요! 야생동물원 보호구역으로 보내야겠어요!";
+
+                                    }else{
+                                      // NONE!  (BACKGROUND SOUND)
+
+                                      document.getElementById("img-intro").text = "누구냐 넌..!";
+
+                                    }
+
+
+
+                		}
+                	</script>
+                	<script>
+                		function readURL(input) {
+                			if (input.files && input.files[0]) {
+                				var reader = new FileReader();
+                				reader.onload = function(e) {
+                					$('.image-upload-wrap').hide();
+                					$('.file-upload-image').attr('src', e.target.result);
+                					$('.file-upload-content').show();
+                					$('.image-title').html(input.files[0].name);
+                				};
+                				reader.readAsDataURL(input.files[0]);
+                			} else {
+                				removeUpload();
+                			}
+                		}
+
+                		function removeUpload() {
+                			$('.file-upload-input').replaceWith($('.file-upload-input').clone());
+                			$('.file-upload-content').hide();
+                			$('.image-upload-wrap').show();
+                		}
+                		$('.image-upload-wrap').bind('dragover', function() {
+                			$('.image-upload-wrap').addClass('image-dropping');
+                		});
+                		$('.image-upload-wrap').bind('dragleave', function() {
+                			$('.image-upload-wrap').removeClass('image-dropping');
+                		});
+                	</script>>
+              </section>
+
+						</div>
+						<div class="author-info text p-4 p-md-5 mt-5 mb-5">
+							<div class="desc">
+								<span class="subheading">인공지능과 함께하는 이미지 분류</span>
+								<h1 class="big-letter">늑대 vs 허스키</h1>
+								<h1 class="mb-4"><span>늑대일까요 허스키일까요?</span></h1>
+
+                <div style="text-align:center">
+
+                  <img id="visual_image" src="/images/wolf_or_dog.jpg" style="width:300px;height:auto;"></img>
+
+                </div>
+
+
+								<p id="img-intro" class="mb-4">좌측에 이미지를 넣고 '예측하기' 버튼을 누르게 되면 인공지능이 자동으로 이미지를 분류합니다.</p>
+								<h3 class="signature h1">Teachable Machine</h3>
+
+	            </div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+      <section>
+
+
+
+
+
+
+
+
+
+      </section>
+
+
+			<section class="ftco-section instagram">
+				<div class="container">
+					<div class="row justify-content-center mb-2 pb-3">
+	          <div class="col-md-7 heading-section heading-section-2 text-center ftco-animate">
+	            <h2 class="mb-4"> Image Classes </h2>
+
+
+	          </div>
+	        </div>
+
+
+
+
+
+
+
+					<div class="row no-gutters">
+		        <div class="col-sm-12 col-md ftco-animate">
+		          <a href="images/drop.gif" class="insta-img image-popup" style="background-image: url(images/drop.gif);">
+		            <div class="icon d-flex justify-content-center">
+		              <span class="icon-instagram align-self-center"></span>
+		            </div>
+		          </a>
+		        </div>
+		        <div class="col-sm-12 col-md ftco-animate">
+		          <a href="images/wolf_drop.gif" class="insta-img image-popup" style="background-image: url(images/wolf_drop.gif);">
+		            <div class="icon d-flex justify-content-center">
+		              <span class="icon-instagram align-self-center"></span>
+		            </div>
+		          </a>
+		        </div>
+
+		      </div>
+				</div>
+			</section>
+      <footer class="ftco-footer ftco-bg-dark ftco-section">
+	      <div class="container px-md-5">
+	        <div class="row mb-5">
+
+	          <div class="col-md">
+	            <div class="ftco-footer-widget mb-4">
+	            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+	            	<div class="block-23 mb-3">
+		              <ul>
+		                <li><span class="icon icon-map-marker"></span><span class="text"> #321 Aegineung Student Center, Korea University, 145 Anam-ro, Seongbuk-gu, Seoul, 02841, KOREA | Intelligence and Informatics Laboratory </span></li>
+		                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+82-2-3290-1338 /</span></a></li>
+		                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">computingtheworld@gmail.com</span></a></li>
+		              </ul>
+		            </div>
+	            </div>
+	          </div>
+
+	        </div>
+	        <div class="row">
+	          <div class="col-md-12">
+
+	            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+	  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+	          </div>
+	        </div>
+	      </div>
+	    </footer>
+		</div><!-- END COLORLIB-MAIN -->
+	</div><!-- END COLORLIB-PAGE -->
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <!-- <script src="js/jquery.timepicker.min.js"></script> -->
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <!-- <script src="js/google-map.js"></script> -->
+  <script src="js/main.js"></script>
+
+
+<!-- <script>
+  $( document ).ready(function() {
+    init();
+
+
+  });
+</script> -->
+
+
+
+  </body>
+</html>

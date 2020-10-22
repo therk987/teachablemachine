@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Louie - Free Bootstrap 4 Template by Colorlib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <!-- don't mind these: -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- these load the stylesheets: -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow:500">
+    <link rel="stylesheet" href="./IMAGE_Machine/css/reset.css">
+    <link rel="stylesheet" href="./IMAGE_Machine/css/style.css">
+    <!-- these load the teachable machine libraries: -->
+    <!-- more documentation at https://github.com/googlecreativelab/teachablemachine-libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+    <!-- these load our code: -->
+    <!-- <script type="module" src="./IMAGE_Machine/js/model-runner.js"></script> -->
+    <script type="module" src="./IMAGE_Machine/js/bar-graph.js"></script>
+
+
+
+  </head>
+  <body>
+
+	<div id="colorlib-page">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
+			<h1 id="colorlib-logo"><a href="index.html"><span class="img" style="background-image: url(images/sound_image.jpg);"></span>Sound</a></h1>
+			<nav id="colorlib-main-menu" role="navigation">
+				<ul>
+					<li><a href="index.html">Teacherable Machine</a></li>
+          <li><a href="image.html">이미지</a></li>
+					<li class="colorlib-active"><a href="sound.html">음성</a></li>
+          <!-- <li><a href="image2.html">Cam</a></li> -->
+
+				</ul>
+			</nav>
+
+		</aside> <!-- END COLORLIB-ASIDE -->
+		<div id="colorlib-main">
+			<section class="ftco-section-no-padding bg-light">
+				<div class="hero-wrap">
+					<div class="overlay"></div>
+					<div class="d-flex">
+						<div class="author-image text img p-md-5">
+
+              <section id="model">
+                <h1>Teachable Machine</h1>
+                <h2>업로드한 링크주소를 입력해주세요.</h2>
+                <input type="text" value="https://teachablemachine.withgoogle.com/models/PqliuW_l-/" id="teachable-link" style="width:300px"></input>
+                <a href="#" id="model_loader" type="button" onclick="init()" class="btn-sm">모델 로드하기</a>
+                <br/>
+                <img src="/images/sleep.jpg" style="width:300px;height:auto;"></img>
+
+                  <div id="label-container"></div>
+
+                  <div id="graph-wrapper"></div>
+
+              </section>
+
+						</div>
+						<div class="author-info text p-4 p-md-5 mt-5 mb-5">
+							<div class="desc">
+								<span class="subheading">목소리로 조명을 키고 끄기</span>
+								<h1 class="big-letter">목소리 리모컨</h1>
+								<h1 class="mb-4"><span>음성인식을 이용한 조명 리모컨</span></h1>
+
+                <div style="text-align:center">
+
+                  <img id="visual_image" src="/images/on.png" style="width:300px;height:auto;"></img>
+
+                </div>
+
+
+                <p id="img-intro" class="mb-4">좌측에 Teachable Machine 음성인식 모델의 링크를 넣으면 불을 꺼줄수 있어요!</p>
+								<h3 class="signature h1">Teachable Machine</h3>
+
+	            </div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+
+
+			<section class="ftco-section instagram">
+				<div class="container">
+					<div class="row justify-content-center mb-2 pb-3">
+	          <div class="col-md-7 heading-section heading-section-2 text-center ftco-animate">
+	            <h2 class="mb-4"> Sound Classes </h2>
+
+
+	          </div>
+	        </div>
+
+
+
+
+
+
+
+					<div class="row no-gutters">
+		        <div class="col-sm-12 col-md ftco-animate">
+		          <a href="images/on.png" class="insta-img image-popup" style="background-image: url(images/on.png);">
+		            <div class="icon d-flex justify-content-center">
+		              <span class="icon-instagram align-self-center"></span>
+		            </div>
+		          </a>
+		        </div>
+		        <div class="col-sm-12 col-md ftco-animate">
+		          <a href="images/off.png" class="insta-img image-popup" style="background-image: url(images/off.png);">
+		            <div class="icon d-flex justify-content-center">
+		              <span class="icon-instagram align-self-center"></span>
+		            </div>
+		          </a>
+		        </div>
+
+			</section>
+      <footer class="ftco-footer ftco-bg-dark ftco-section">
+	      <div class="container px-md-5">
+	        <div class="row mb-5">
+
+	          <div class="col-md">
+	            <div class="ftco-footer-widget mb-4">
+	            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+	            	<div class="block-23 mb-3">
+		              <ul>
+		                <li><span class="icon icon-map-marker"></span><span class="text"> #321 Aegineung Student Center, Korea University, 145 Anam-ro, Seongbuk-gu, Seoul, 02841, KOREA | Intelligence and Informatics Laboratory </span></li>
+		                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+82-2-3290-1338 /</span></a></li>
+		                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">computingtheworld@gmail.com</span></a></li>
+		              </ul>
+		            </div>
+	            </div>
+	          </div>
+
+	        </div>
+	        <div class="row">
+	          <div class="col-md-12">
+
+	            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+	  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+	          </div>
+	        </div>
+	      </div>
+	    </footer>
+		</div><!-- END COLORLIB-MAIN -->
+	</div><!-- END COLORLIB-PAGE -->
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <!-- <script src="js/jquery.timepicker.min.js"></script> -->
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="js/google-map.js"></script>
+  <script src="js/main.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands@0.4.0/dist/speech-commands.min.js"></script>
+
+  <script type="text/javascript">
+      // more documentation available at
+      // https://github.com/tensorflow/tfjs-models/tree/master/speech-commands
+      // import { setupBarGraph, updateBarGraph } from './IMAGE_Machine/js/bar-graph.js';
+
+      // the link to your model provided by Teachable Machine export panel
+      const URL = "https://teachablemachine.withgoogle.com/models/vYwB5x8wJ/";
+
+      async function createModel() {
+          const checkpointURL = URL + "model.json"; // model topology
+          const metadataURL = URL + "metadata.json"; // model metadata
+
+          const recognizer = speechCommands.create(
+              "BROWSER_FFT", // fourier transform type, not useful to change
+              undefined, // speech commands vocabulary feature, not useful for your models
+              checkpointURL,
+              metadataURL);
+
+          // check that model and metadata are loaded via HTTPS requests.
+          await recognizer.ensureModelLoaded();
+
+          return recognizer;
+      }
+
+      async function init() {
+
+
+        document.getElementById("model_loader").text = "모델 로드 중 입니다. 잠시만 기다려주세요!";
+
+          const recognizer = await createModel();
+          const classLabels = recognizer.wordLabels(); // get class labels
+          const labelContainer = document.getElementById("graph-wrapper");
+          for (let i = 0; i < classLabels.length; i++) {
+              labelContainer.appendChild(document.createElement("div"));
+          }
+
+          // listen() takes two arguments:
+          // 1. A callback function that is invoked anytime a word is recognized.
+          // 2. A configuration object with adjustable fields
+          recognizer.listen(result => {
+              const scores = result.scores; // probability of prediction for each class
+              // render the probability scores per class
+
+              var score_result = Array.from({length:classLabels.length}, ()=>0);
+              for (let i = 0; i < classLabels.length; i++) {
+                  const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
+                  labelContainer.childNodes[i].innerHTML = classPrediction;
+                  score_result[i] = result.scores[i].toFixed(2);
+              }
+
+
+              var max = score_result.reduce( function (previous, current) {
+	               return previous > current ? previous:current;
+              });
+
+              var index = score_result.indexOf(max);
+
+              if(index==0){
+                // ON!
+                document.getElementById("visual_image").src = "/images/on.png";
+                document.getElementById("img-intro").innerText = Math.floor(score_result[index] * 100) +"%로 불을 키라고 인식했네요!\n 다시 불을 꺼볼까요?";
+
+
+
+              }else if(index==1){
+                // OFF!
+                document.getElementById("visual_image").src = "/images/off.png";
+                document.getElementById("img-intro").innerText = Math.floor(score_result[index] * 100) +"%로 불을 끄라고 인식하였어요!\n 이제 편하게 잠을 잘 수 있겠어요!";
+
+              }else{
+                // NONE!  (BACKGROUND SOUND)
+
+
+              }
+
+
+
+              // alert(score_result[0],classLabels[0]);
+              // alert(score_result[1],classLabels[1]);
+              // alert(score_result[2],classLabels[2]);
+
+
+          }, {
+              includeSpectrogram: true, // in case listen should return result.spectrogram
+              probabilityThreshold: 0.75,
+              invokeCallbackOnNoiseAndUnknown: true,
+              overlapFactor: 0.50 // probably want between 0.5 and 0.75. More info in README
+          });
+
+          // Stop the recognition in 5 seconds.
+          // setTimeout(() => recognizer.stopListening(), 5000);
+
+          document.getElementById("model_loader").text = "모델 로드 완료";
+
+          alert(URL+"\n 모델이 로드되었습니다.")
+
+
+      }
+  </script>
+
+
+  </body>
+</html>
