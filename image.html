@@ -161,24 +161,55 @@
 
                                     var index = score_result.indexOf(max);
 
-                                    if(index==0){
-                                      // ON!
-                                      document.getElementById("visual_image").src = "images/drop.gif";
-                                      document.getElementById("img-intro").innerText = Math.floor(score_result[index] * 100) +"% 허스키군요! 가정에 분양 보내야겠어요!";
+
+                                    if(prediction[0].className=="허스키"){
+
+                                      if(index==0){
+                                        // ON!
+                                        document.getElementById("visual_image").src = "images/drop.gif";
+                                        document.getElementById("img-intro").innerText = Math.floor(score_result[index] * 100) +"% 허스키군요! 가정에 분양 보내야겠어요!";
 
 
 
-                                    }else if(index==1){
-                                      // OFF!
-                                      document.getElementById("visual_image").src = "images/wolf_drop.gif";
-                                      document.getElementById("img-intro").innerText = Math.floor(score_result[index] * 100) +"% 늑대였군요! 야생동물원 보호구역으로 보내야겠어요!";
+                                      }else if(index==1){
+                                        // OFF!
+                                        document.getElementById("visual_image").src = "images/wolf_drop.gif";
+                                        document.getElementById("img-intro").innerText = Math.floor(score_result[index] * 100) +"% 늑대였군요! 야생동물원 보호구역으로 보내야겠어요!";
+
+                                      }else{
+                                        // NONE!  (BACKGROUND SOUND)
+
+                                        document.getElementById("img-intro").text = "누구냐 넌..!";
+
+                                      }
+
 
                                     }else{
-                                      // NONE!  (BACKGROUND SOUND)
 
-                                      document.getElementById("img-intro").text = "누구냐 넌..!";
+                                      if(index==1){
+                                        // ON!
+                                        document.getElementById("visual_image").src = "images/drop.gif";
+                                        document.getElementById("img-intro").innerText = Math.floor(score_result[index] * 100) +"% 허스키군요! 가정에 분양 보내야겠어요!";
+
+
+
+                                      }else if(index==0){
+                                        // OFF!
+                                        document.getElementById("visual_image").src = "images/wolf_drop.gif";
+                                        document.getElementById("img-intro").innerText = Math.floor(score_result[index] * 100) +"% 늑대였군요! 야생동물원 보호구역으로 보내야겠어요!";
+
+                                      }else{
+                                        // NONE!  (BACKGROUND SOUND)
+
+                                        document.getElementById("img-intro").text = "누구냐 넌..!";
+
+                                      }
+
+
 
                                     }
+
+
 
 
 
