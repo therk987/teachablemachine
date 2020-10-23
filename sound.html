@@ -257,21 +257,46 @@
 
               var index = score_result.indexOf(max);
 
-              if(index==0){
-                // ON!
-                document.getElementById("visual_image").src = "images/on.png";
-                document.getElementById("img-intro").innerText = Math.floor(score_result[index] * 100) +"%로 불을 키라고 인식했네요!\n 다시 불을 꺼볼까요?";
+
+              if(classLabels[0] == "on"){
+                if(index==0){
+                  // ON!
+                  document.getElementById("visual_image").src = "images/on.png";
+                  document.getElementById("img-intro").innerText = Math.floor(score_result[index] * 100) +"%로 불을 키라고 인식했네요!\n 다시 불을 꺼볼까요?";
 
 
 
-              }else if(index==1){
-                // OFF!
-                document.getElementById("visual_image").src = "images/off.png";
-                document.getElementById("img-intro").innerText = Math.floor(score_result[index] * 100) +"%로 불을 끄라고 인식하였어요!\n 이제 편하게 잠을 잘 수 있겠어요!";
+                }else if(index==1){
+                  // OFF!
+                  document.getElementById("visual_image").src = "images/off.png";
+                  document.getElementById("img-intro").innerText = Math.floor(score_result[index] * 100) +"%로 불을 끄라고 인식하였어요!\n 이제 편하게 잠을 잘 수 있겠어요!";
+
+                }else{
+                  // NONE!  (BACKGROUND SOUND)
+
+
+                }
+
 
               }else{
-                // NONE!  (BACKGROUND SOUND)
 
+                if(index==1){
+                  // ON!
+                  document.getElementById("visual_image").src = "images/on.png";
+                  document.getElementById("img-intro").innerText = Math.floor(score_result[index] * 100) +"%로 불을 키라고 인식했네요!\n 다시 불을 꺼볼까요?";
+
+
+
+                }else if(index==0){
+                  // OFF!
+                  document.getElementById("visual_image").src = "images/off.png";
+                  document.getElementById("img-intro").innerText = Math.floor(score_result[index] * 100) +"%로 불을 끄라고 인식하였어요!\n 이제 편하게 잠을 잘 수 있겠어요!";
+
+                }else{
+                  // NONE!  (BACKGROUND SOUND)
+
+
+                }
 
               }
 
