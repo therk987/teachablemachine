@@ -206,7 +206,7 @@
       // import { setupBarGraph, updateBarGraph } from './IMAGE_Machine/js/bar-graph.js';
 
       // the link to your model provided by Teachable Machine export panel
-      const URL = "https://teachablemachine.withgoogle.com/models/vYwB5x8wJ/";
+      const URL = document.getElementById("teachable-link").value;
 
       async function createModel() {
           const checkpointURL = URL + "model.json"; // model topology
